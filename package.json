@@ -1,0 +1,15 @@
+{
+  "name": "bootstrapoutlookmailview",
+  "version": "1.0.0",
+  "description": "Microsoft's Outlook 1AMail like interface for projects",
+  "main": "index.js",
+  "scripts": {
+    "fmt": "npx prettier . --write",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "prettier": "3.0.3"
+  }
+}
