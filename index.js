@@ -1,8 +1,19 @@
 
-import { ms } from './js/main.js';
+import { OutLook } from './js/outlook.js';
+
+document.addEventListener("DOMContentLoaded", function () {
+       let ol = new OutLook();
+	toolbar_build(ol);
+
+});
 
 
-jSuites.toolbar(document.getElementById('toolbar'), {
+function toolbar_build(ol) {
+   /*
+    * https://jsuites.net/v4/
+    */
+
+  jSuites.toolbar(document.getElementById('toolbar'), {
     container: true,
     items:[{
         type: 'select',
@@ -13,7 +24,6 @@ jSuites.toolbar(document.getElementById('toolbar'), {
         },
         onchange: function(a,b,c,d) {
             console.log(d);
-            ms("TEST");
 
         }
     },
@@ -23,6 +33,7 @@ jSuites.toolbar(document.getElementById('toolbar'), {
         onclick: function() {
             // Do something
             console.log('Italic');
+            ol.mode_switch("TEST");
         }
     },
     {
@@ -47,6 +58,7 @@ jSuites.toolbar(document.getElementById('toolbar'), {
             }
         }
     }]
-})
+  })
 
+}
 
