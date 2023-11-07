@@ -20,12 +20,19 @@ export class OutLook {
   mode_switch(op) {
     console.log("mode_switch", op)
     let ele = document.getElementById("main-container"); // GS
+    let list = document.getElementById("list"); // GS
+    let content = document.getElementById("content"); // GS
     if( ele.classList.contains('horizontal') ){
         ele.classList.remove('horizontal');
         ele.classList.add('vertical');
+	    console.log('vertical');
+	    list.style.width = '100%';
+	    content.style.width = '100%';
+
     } else if( ele.classList.contains('vertical') ){
         ele.classList.remove('vertical');
         ele.classList.add('horizontal');
+	    console.log('horizontal');
     }
 
   }
@@ -176,21 +183,29 @@ export class OutLook {
       let txt = document.createTextNode(mails[i].name);
       span21.appendChild(txt);
       div21.appendChild(span21);
+
       const div22 = document.createElement("div");
       div22.className = "mail_subject";
       const span22 = document.createElement("span");
       txt = document.createTextNode(mails[i].subject);
       span22.appendChild(txt);
       div22.appendChild(span22);
+
       const div23 = document.createElement("div");
       div23.className = "mail_summary";
       const span23 = document.createElement("span");
       txt = document.createTextNode(mails[i].summary);
-      //txt = document.createTextNode('dummy');
       span23.appendChild(txt);
-      //span23.innerHTML = mails[i].summary ;
       div23.appendChild(span23);
 
+      const div24 = document.createElement("div");
+      div24.className = "mail_sent_date";
+      const span24 = document.createElement("span");
+      txt = document.createTextNode(mails[i].sentDate);
+      span24.appendChild(txt);
+      div24.appendChild(span24);
+
+      div2.appendChild(div24);
       div2.appendChild(div21);
       div2.appendChild(div22);
       div2.appendChild(div23);

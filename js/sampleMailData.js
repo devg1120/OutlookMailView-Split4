@@ -1,3 +1,44 @@
+
+var date = new Date();
+
+
+
+function zero_pad( num) {
+ var ret = ( '000' + num ).slice( -2 );
+ return ret;
+
+}
+
+function date_format( date ) {
+
+var yyyy = date.getFullYear(); // 西暦を取得
+var mm = date.getMonth() + 1;  // 月を取得（返り値は実際の月-1なので、+1する）
+var dd = date.getDate(); // 日を取得
+var w = date.getDay();   // 曜日を取得（数値）
+ 
+var h = zero_pad(date.getHours());
+var m = zero_pad(date.getMinutes());
+var s = zero_pad(date.getSeconds());
+
+// 月と日が一桁の場合は先頭に0をつける
+if (mm < 10) {
+    mm = "0" + mm;
+}
+if (dd < 10) {
+    dd = "0" + dd;
+}
+ 
+// 曜日を数値から文字列に変換するための配列
+week = ["日", "月", "火", "水", "木", "金", "土"];  
+ 
+var result = yyyy + "年" + mm + "月" + dd + "日" + "(" + week[w] + ")" + " " + h +":" + m + ":" + s;
+
+
+
+ return result;
+
+}
+
 var sampleMailData = [
   {
     id: 1,
@@ -17,7 +58,8 @@ var sampleMailData = [
         size: "1.26 MB",
       },
     ],
-    sentDate: "Pzt 16:47",
+    //sentDate: "Pzt 16:47",
+    sentDate: "2023年 11月  7日 火曜日 17:26:15 JST",
     to: "ozcanzaferayan@gmail.com",
     name: "ByPeople & ShockFamily",
     from: "bp@bypeople.com",
@@ -30,7 +72,7 @@ var sampleMailData = [
     isImportant: false,
     isReplied: false,
     attachments: [],
-    sentDate: "Pzt 16:47",
+    sentDate: date.toLocaleString("ja"),
     to: "ozcanzaferayan@gmail.com",
     name: "Burgeon Brown",
     from: "burgeonjgdrjrgxhdum@hotmail.com",
@@ -43,7 +85,7 @@ var sampleMailData = [
     isImportant: false,
     isReplied: false,
     attachments: [],
-    sentDate: "Pzt 16:47",
+    sentDate: date_format(date),
     to: "ozcanzaferayan@gmail.com",
     name: "James Smith",
     from: "james@intelitmedia.com",
