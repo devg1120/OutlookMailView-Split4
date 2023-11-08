@@ -38,7 +38,19 @@ export class OutLook {
              }
         }
 
-
+        let sender_images =  list.querySelectorAll(".sender_image");
+	for (const sm of sender_images) {
+	        sm.classList.remove("sender_image")
+	        sm.classList.add("sender_image_inline")
+             
+        }
+/*
+        let items =  list.querySelectorAll(".item");
+	for (const im of items) {
+	        im.classList.remove("item")
+	        im.classList.add("item_inline")
+        }
+*/
     } else if( ele.classList.contains('vertical') ){
         ele.classList.remove('vertical');
         ele.classList.add('horizontal');
@@ -53,6 +65,19 @@ export class OutLook {
              }
         }
 
+        let sender_images =  list.querySelectorAll(".sender_image_inline");
+	for (const sm of sender_images) {
+	        sm.classList.remove("sender_image_inline")
+	        sm.classList.add("sender_image")
+             
+        }
+/*
+        let items =  list.querySelectorAll(".item_inline");
+	for (const im of items) {
+	        im.classList.remove("item_inline")
+	        im.classList.add("item")
+        }
+*/
 
     }
 
