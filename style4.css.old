@@ -193,7 +193,7 @@ ul.mail_items .itemline {
   border-radius: 100%;
   background-color: #af5791;
   /*display: inline-block;*/
-  vertical-align: top; 
+  /* vertical-align: top; */
 }
 
 .sender_image span {
@@ -213,8 +213,8 @@ ul.mail_items .mail_info {
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
-  /*width: calc(100% - 120px); */
-   width: calc(100% - 47px); 
+  /* width: calc(100% - 120px); */
+  width: calc(100% - 20px); 
   user-select: none;
   -moz-user-select: none;
   
