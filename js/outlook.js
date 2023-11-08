@@ -25,14 +25,35 @@ export class OutLook {
     if( ele.classList.contains('horizontal') ){
         ele.classList.remove('horizontal');
         ele.classList.add('vertical');
-	    console.log('vertical');
-	    list.style.width = '100%';
-	    content.style.width = '100%';
+	console.log('vertical');
+	list.style.width = '100%';
+	content.style.width = '100%';
+
+        let mail_infos =  list.querySelectorAll(".mail_info");
+	for (const mail_info of mail_infos) {
+             //console.log(elem);
+	     for (const el of Array.from(mail_info.children)) {
+                  //console.log(el);
+	        el.classList.add("mail_info_inline_block")
+             }
+        }
+
 
     } else if( ele.classList.contains('vertical') ){
         ele.classList.remove('vertical');
         ele.classList.add('horizontal');
-	    console.log('horizontal');
+	console.log('horizontal');
+
+        let mail_infos =  list.querySelectorAll(".mail_info");
+	for (const mail_info of mail_infos) {
+             //console.log(elem);
+	     for (const el of Array.from(mail_info.children)) {
+                  //console.log(el);
+	        el.classList.remove("mail_info_inline_block")
+             }
+        }
+
+
     }
 
   }

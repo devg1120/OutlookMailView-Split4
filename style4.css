@@ -213,26 +213,35 @@ ul.mail_items .mail_info {
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
-  width: calc(100% - 120px); 
+  /* width: calc(100% - 120px); */
+  width: calc(100% - 20px); 
   user-select: none;
   -moz-user-select: none;
   
 }
 
 .mail_info .mail_sender {
+  width: 200px;
+  background-color: #FFF0F5;
   font-size: 15px;
 }
 
 .mail_info .mail_subject {
+   width: 300px; 
+  background-color: #F0FFF0;
   font-size: 15px;
 }
 
 .mail_info .mail_summary {
+  /* width: 300px; */
+  background-color: #DCDCDC;
   font-size: 15px;
   color: #777;
 }
 
 .mail_info .mail_sent_date {
+  width: 200px;
+  background-color: #F0F8FF;
   font-size: 15px;
 }
 
