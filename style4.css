@@ -203,21 +203,24 @@ ul.mail_items .itemline {
 }
 
 ul.mail_items .mail_info {
-  display: inline-block;
+  display: inline-block; 
+
   /*  position: absolute; */
+   
   padding-left: 10px;
   white-space: nowrap;
   line-height: 19px;
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
-  width: calc(100% - 120px);
+  width: calc(100% - 120px); 
   user-select: none;
   -moz-user-select: none;
+  
 }
 
 .mail_info .mail_sender {
-  font-size: 14px;
+  font-size: 15px;
 }
 
 .mail_info .mail_subject {
@@ -227,6 +230,14 @@ ul.mail_items .mail_info {
 .mail_info .mail_summary {
   font-size: 15px;
   color: #777;
+}
+
+.mail_info .mail_sent_date {
+  font-size: 15px;
+}
+
+.mail_info .mail_info_inline_block {
+   display: inline-block; 
 }
 
 .mail_actions {
