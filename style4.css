@@ -87,6 +87,7 @@ span {
   background: #fff;
   border-right: 1px solid #e6e6e6;
   overflow: hidden; 
+  /*overflow: auto; */
 }
 
 #content {
@@ -376,12 +377,16 @@ ul.mail_items::-webkit-scrollbar-thumb {
 
 table.mail_items_table {
   border-collapse:collapse;
+  /* overflow-y:  auto;*/
 }
  
 table.mail_items_table th {
-  border:1px solid #000066;
+  /* border:1px solid #000066;*/
   background:royalblue;
-      position: relative;
+  /* position: relative; */
+    position: sticky;
+    top: 0;
+    left: 0;
 
 }
  

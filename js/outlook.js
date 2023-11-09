@@ -436,8 +436,15 @@ export class OutLook {
       "#bad80a",
     ];
 
+    var basediv = document.createElement('div');
+    basediv.style.width = '100%';
+    basediv.style.height = '100%';
+    basediv.style.overflow = 'auto';
+
+    
     var table = document.createElement('table');
     table.classList.add("mail_items_table")
+    basediv.appendChild(table);
 
     var senderColors = {};
 
@@ -530,7 +537,8 @@ export class OutLook {
       table.appendChild(tr);
     }
 
-    return table;
+    //return table;
+	  return basediv;
   }
 
   getSenderImageText(senderName) {
