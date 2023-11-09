@@ -249,15 +249,16 @@ ul.mail_items .mail_info {
 }
 
 .mail_info .mail_sender {
-  /*width: 200px;*/
+  width: 200px;
   background-color: #FFF0F5;
   font-size: 15px;
 }
 
 .mail_info .mail_subject {
-  /* width: 300px; */
+   width: 300px; 
   background-color: #F0FFF0;
   font-size: 15px;
+  /* resize: horizontal; */
 }
 
 .mail_info .mail_summary {
@@ -268,7 +269,7 @@ ul.mail_items .mail_info {
 }
 
 .mail_info .mail_sent_date {
-  /*width: 200px;*/
+  width: 200px;
   background-color: #F0F8FF;
   font-size: 15px;
 }
@@ -311,6 +312,14 @@ ul.mail_items .mail_info {
   background-color: #ddedf9;
 }
 
+.mail_items .item_inline:hover {
+  background-color: #f3f3f3;
+  cursor: default;
+}
+
+.mail_items .item_inline.selected {
+  background-color: #ddedf9;
+}
 ul.mail_items::-webkit-scrollbar {
   width: 8px;
   background-color: #ffffff;
@@ -362,3 +371,52 @@ ul.mail_items::-webkit-scrollbar-thumb {
   cursor: row-resize;
   height: 10px;
 }
+
+
+
+table.mail_items_table {
+  border-collapse:collapse;
+}
+ 
+table.mail_items_table th {
+  border:1px solid #000066;
+  background:royalblue;
+      position: relative;
+
+}
+ 
+table.mail_items_table td {
+  border:1px solid #000066;
+  /* background:#ffffff; */
+}
+
+table.mail_items_table tr:hover {
+  background-color: #f3f3f3;
+  cursor: default;
+}
+table.mail_items_table.selected {
+  background-color: #ddedf9;
+}
+
+
+
+.resizer {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 5px;
+    cursor: col-resize;
+    user-select: none;
+}
+.resizer:hover,
+.resizing {
+    border-right: 2px solid blue;
+}
+
+.resizable {
+    border: 1px solid gray;
+    height: 100px;
+    width: 100px;
+    position: relative;
+}
+

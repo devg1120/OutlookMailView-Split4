@@ -9,7 +9,10 @@ export class OutLook {
     this.splitview = new SplitView(); // GS
     this.splitview.activate(document.getElementById("main-container")); // GS
 
-    this.loadData(sampleMailData);
+    this.items_list = this.loadData(sampleMailData);
+    this.items_table = this.loadData2(sampleMailData);
+    //this.createResizableTable(this.items_table);
+
     //sidebarCollapseClick();
     //dropdownClick();
     //hoverMailActionButtons();
@@ -44,13 +47,13 @@ export class OutLook {
 	        sm.classList.add("sender_image_inline")
              
         }
-/*
+
         let items =  list.querySelectorAll(".item");
 	for (const im of items) {
 	        im.classList.remove("item")
 	        im.classList.add("item_inline")
         }
-*/
+
     } else if( ele.classList.contains('vertical') ){
         ele.classList.remove('vertical');
         ele.classList.add('horizontal');
@@ -71,18 +74,89 @@ export class OutLook {
 	        sm.classList.add("sender_image")
              
         }
-/*
+
         let items =  list.querySelectorAll(".item_inline");
 	for (const im of items) {
 	        im.classList.remove("item_inline")
 	        im.classList.add("item")
         }
-*/
+
 
     }
 
   }
 
+  mode_switch2(op) {
+    console.log("mode_switch", op)
+    let ele = document.getElementById("main-container"); // GS
+    let list = document.getElementById("list"); // GS
+    let content = document.getElementById("content"); // GS
+    if( ele.classList.contains('horizontal') ){
+        ele.classList.remove('horizontal');
+        ele.classList.add('vertical');
+	console.log('vertical');
+	list.style.width = '100%';
+	content.style.width = '100%';
+
+	    list.removeChild(this.items_list);
+	    list.appendChild(this.items_table);
+        this.createResizableTable(this.items_table);
+/*
+        let mail_infos =  list.querySelectorAll(".mail_info");
+	for (const mail_info of mail_infos) {
+             //console.log(elem);
+	     for (const el of Array.from(mail_info.children)) {
+                  //console.log(el);
+	        el.classList.add("mail_info_inline_block")
+             }
+        }
+
+        let sender_images =  list.querySelectorAll(".sender_image");
+	for (const sm of sender_images) {
+	        sm.classList.remove("sender_image")
+	        sm.classList.add("sender_image_inline")
+             
+        }
+
+        let items =  list.querySelectorAll(".item");
+	for (const im of items) {
+	        im.classList.remove("item")
+	        im.classList.add("item_inline")
+        }
+*/
+    } else if( ele.classList.contains('vertical') ){
+        ele.classList.remove('vertical');
+        ele.classList.add('horizontal');
+	console.log('horizontal');
+
+	    list.removeChild(this.items_table);
+	    list.appendChild(this.items_list);
+        let mail_infos =  list.querySelectorAll(".mail_info");
+	for (const mail_info of mail_infos) {
+             //console.log(elem);
+	     for (const el of Array.from(mail_info.children)) {
+                  //console.log(el);
+	        el.classList.remove("mail_info_inline_block")
+             }
+        }
+
+        let sender_images =  list.querySelectorAll(".sender_image_inline");
+	for (const sm of sender_images) {
+	        sm.classList.remove("sender_image_inline")
+	        sm.classList.add("sender_image")
+             
+        }
+
+        let items =  list.querySelectorAll(".item_inline");
+	for (const im of items) {
+	        im.classList.remove("item_inline")
+	        im.classList.add("item")
+        }
+
+
+    }
+
+  }
   bindMailListItemClick() {
     const highlightedItems = document.querySelectorAll("ul.mail_items li");
 
@@ -288,6 +362,7 @@ export class OutLook {
       //li.appendChild(div3);
 
       $mailItems.append(li);
+
       /*
         $mailItems.append(
             '<li class="item container" data-json=\'{{JSON}}\' data-sender-color="{{SENDER_COLOR}}" data-sender-image="{{SENDER_IMG}}">\
@@ -331,6 +406,131 @@ export class OutLook {
             );
 	    */
     }
+      return $mailItems;
+  }
+
+  loadData2(mails) {
+    //var $mailItems_table = $(".mail_items_table");
+    var colors = [
+      "#ffb900",
+      "#d83b01",
+      "#ea4300",
+      "#ff8c00",
+      "#a80000",
+      "#e81123",
+      "#5c005c",
+      "#b4009e",
+      "#e3008c",
+      "#32145a",
+      "#5c2d91",
+      "#b4a0ff",
+      "#002050",
+      "#00188f",
+      "#0078d4",
+      "#00bcf2",
+      "#004b50",
+      "#008272",
+      "#00B294",
+      "#004b1c",
+      "#107c10",
+      "#bad80a",
+    ];
+
+    var table = document.createElement('table');
+    table.classList.add("mail_items_table")
+
+    var senderColors = {};
+
+    var tr = document.createElement('tr');
+      var th = ""
+      th =  document.createElement('th');
+      th.textContent = "NN";
+      tr.appendChild(th);
+      th =  document.createElement('th');
+      th.textContent = "Sender";
+      tr.appendChild(th);
+      th =  document.createElement('th');
+      th.textContent = "Header";
+      tr.appendChild(th);
+      th =  document.createElement('th');
+      th.textContent = "Date";
+      tr.appendChild(th);
+    table.appendChild(tr);
+
+    for (var i = 0; i < mails.length; i++) {
+
+      var tr = document.createElement('tr');
+
+      var randomColor = colors[Math.floor(Math.random() * colors.length)];
+      senderColors[mails[i].from] =
+        senderColors[mails[i].from] == undefined
+          ? randomColor
+          : senderColors[mails[i].from];
+      const li = document.createElement("li");
+      li.className = "item containeitem container";
+      li.setAttribute("json", JSON.stringify(mails[i]));
+      li.setAttribute("sender-image", this.getSenderImageText(mails[i].name));
+      li.setAttribute("sender-color", senderColors[mails[i].from]);
+
+      const div1 = document.createElement("div");
+      div1.className = "sender_image";
+      div1.style.backgroundColor = senderColors[mails[i].from];
+      const span = document.createElement("span");
+      //span.setAttribute('src',  getSenderImageText(mails[i].name));
+      span.innerHTML = this.getSenderImageText(mails[i].name);
+      div1.appendChild(span);
+      var th = document.createElement('td');
+      th.appendChild(div1);
+      tr.appendChild(th);
+
+      //const div2 = document.createElement("div");
+      //div2.className = "mail_info";
+      const div21 = document.createElement("div");
+      div21.className = "mail_sender";
+      const span21 = document.createElement("span");
+      let txt = document.createTextNode(mails[i].name);
+      span21.appendChild(txt);
+      div21.appendChild(span21);
+      th = document.createElement('td');
+      th.appendChild(div21);
+      tr.appendChild(th);
+
+      const div22 = document.createElement("div");
+      div22.className = "mail_subject";
+      const span22 = document.createElement("span");
+      txt = document.createTextNode(mails[i].subject);
+      span22.appendChild(txt);
+      div22.appendChild(span22);
+      th = document.createElement('td');
+      th.appendChild(div22);
+      tr.appendChild(th);
+
+	    /*
+      const div23 = document.createElement("div");
+      div23.className = "mail_summary";
+      const span23 = document.createElement("span");
+      txt = document.createTextNode(mails[i].summary);
+      span23.appendChild(txt);
+      div23.appendChild(span23);
+      th = document.createElement('td');
+      th.appendChild(div23);
+      tr.appendChild(th);
+*/
+
+      const div24 = document.createElement("div");
+      div24.className = "mail_sent_date";
+      const span24 = document.createElement("span");
+      txt = document.createTextNode(mails[i].sentDate);
+      span24.appendChild(txt);
+      div24.appendChild(span24);
+      th = document.createElement('td');
+      th.appendChild(div24);
+      tr.appendChild(th);
+
+      table.appendChild(tr);
+    }
+
+    return table;
   }
 
   getSenderImageText(senderName) {
@@ -345,4 +545,61 @@ export class OutLook {
       return senderParts[0].substring(0, 1).toUpperCase();
     }
   }
+
+
+  createResizableTable(table) {
+        let that = this;
+        const cols = table.querySelectorAll('th');
+        [].forEach.call(cols, function (col) {
+            // Add a resizer element to the column
+            const resizer = document.createElement('div');
+            resizer.classList.add('resizer');
+
+            // Set the height
+            resizer.style.height = table.offsetHeight + 'px';
+            //resizer.style.height =  '50px';
+            //resizer.style.width =  '5px';
+
+            col.appendChild(resizer);
+
+            that.createResizableColumn(col, resizer);
+        });
+    };
+
+   createResizableColumn(col, resizer) {
+        let x = 0;
+        let w = 0;
+
+        const mouseDownHandler = function (e) {
+		console.log("mouseDownHandler");
+            x = e.clientX;
+
+            const styles = window.getComputedStyle(col);
+            w = parseInt(styles.width, 10);
+
+            document.addEventListener('mousemove', mouseMoveHandler);
+            document.addEventListener('mouseup', mouseUpHandler);
+
+            resizer.classList.add('resizing');
+        };
+
+        const mouseMoveHandler = function (e) {
+            const dx = e.clientX - x;
+            col.style.width = (w + dx) + 'px';
+        };
+
+        const mouseUpHandler = function () {
+            resizer.classList.remove('resizing');
+            document.removeEventListener('mousemove', mouseMoveHandler);
+            document.removeEventListener('mouseup', mouseUpHandler);
+        };
+
+        resizer.addEventListener('mousedown', mouseDownHandler);
+    };
+
+
+
+
+
+
 } // end class

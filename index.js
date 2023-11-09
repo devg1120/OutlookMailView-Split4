@@ -42,6 +42,7 @@ function toolbar_build(ol) {
         onclick: function() {
             // Do something
             console.log('Bold');
+            ol.mode_switch2("TEST");
         }
     },
     {
