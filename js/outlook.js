@@ -17,6 +17,7 @@ export class OutLook {
     //dropdownClick();
     //hoverMailActionButtons();
     this.bindMailListItemClick();
+    //this.bindMailTableItemClick();
     //bindEscKey();
   }
 
@@ -101,6 +102,7 @@ export class OutLook {
 	    list.removeChild(this.items_list);
 	    list.appendChild(this.items_table);
         this.createResizableTable(this.items_table);
+       this.bindMailTableItemClick();
 /*
         let mail_infos =  list.querySelectorAll(".mail_info");
 	for (const mail_info of mail_infos) {
@@ -157,6 +159,7 @@ export class OutLook {
     }
 
   }
+
   bindMailListItemClick() {
     const highlightedItems = document.querySelectorAll("ul.mail_items li");
 
@@ -168,6 +171,18 @@ export class OutLook {
     });
   }
 
+  bindMailTableItemClick() {
+    const highlightedItems = document.querySelectorAll(".mail_items_table tr");
+    highlightedItems.forEach((userItem) => {
+      if ( userItem.classList.contains('item') ) {
+          userItem.addEventListener("click", () => {
+            this.highlightMailTableItem(userItem);
+            this.loadMailItem(userItem);
+          });
+      }
+    });
+    
+  }
   loadMailItem(listItem) {
     var mail = JSON.parse(listItem.getAttribute("json"));
     var senderImage = listItem.getAttribute("sender-image");
@@ -217,6 +232,18 @@ export class OutLook {
 
     listItem.classList.add("selected");
   }
+
+  highlightMailTableItem(listItem) {
+	  
+    let childs = listItem.parentNode.children;
+
+    for (let i = 0; i < childs.length; i++) {
+      childs[i].classList.remove("selected");
+    }
+
+    listItem.classList.add("selected");
+  }
+
 
   indEscKey() {
     $(document).keyup(function (e) {
@@ -473,11 +500,12 @@ export class OutLook {
         senderColors[mails[i].from] == undefined
           ? randomColor
           : senderColors[mails[i].from];
-      const li = document.createElement("li");
-      li.className = "item containeitem container";
-      li.setAttribute("json", JSON.stringify(mails[i]));
-      li.setAttribute("sender-image", this.getSenderImageText(mails[i].name));
-      li.setAttribute("sender-color", senderColors[mails[i].from]);
+
+      //const li = document.createElement("li");
+      tr.className = "item containeitem container";
+      tr.setAttribute("json", JSON.stringify(mails[i]));
+      tr.setAttribute("sender-image", this.getSenderImageText(mails[i].name));
+      tr.setAttribute("sender-color", senderColors[mails[i].from]);
 
       const div1 = document.createElement("div");
       div1.className = "sender_image";

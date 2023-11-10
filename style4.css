@@ -399,7 +399,7 @@ table.mail_items_table tr:hover {
   background-color: #f3f3f3;
   cursor: default;
 }
-table.mail_items_table.selected {
+table.mail_items_table tr.selected {
   background-color: #ddedf9;
 }
 
