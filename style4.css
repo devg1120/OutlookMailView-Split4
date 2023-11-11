@@ -117,6 +117,7 @@ span {
   border-right: 1px solid #e6e6e6;
   overflow: hidden; 
   /*overflow: auto; */
+  tabindex=0;
 }
 
 #content {

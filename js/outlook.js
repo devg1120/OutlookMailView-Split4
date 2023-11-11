@@ -19,6 +19,7 @@ export class OutLook {
     this.bindMailListItemClick();
     //this.bindMailTableItemClick();
     //bindEscKey();
+    this.bindKey();
   }
 
   mode_switch(op) {
@@ -81,7 +82,6 @@ export class OutLook {
 	        im.classList.remove("item_inline")
 	        im.classList.add("item")
         }
-
 
     }
 
@@ -245,12 +245,103 @@ export class OutLook {
   }
 
 
-  indEscKey() {
+  bindEscKey() {
     $(document).keyup(function (e) {
       if (e.key === "Escape") {
         $(".mail_content").hide();
       }
     });
+  }
+
+  bindKey() {
+    let list = document.getElementById("list"); // GS
+    list.contentEditable = true;
+    list.addEventListener(
+      "keydown",
+      (event) => {
+        if (event.defaultPrevented) {
+          return; // Do nothing if the event was already processed
+        }
+        //console.log(event.key);
+    
+        switch (event.key) {
+          case "Down": // IE/Edge specific value
+          case "ArrowDown":
+            // Do something for "down arrow" key press.
+            this.list_item_select_down();
+            break;
+          case "Up": // IE/Edge specific value
+          case "ArrowUp":
+            // Do something for "up arrow" key press.
+            this.list_item_select_up();
+            break;
+          case "Left": // IE/Edge specific value
+          case "ArrowLeft":
+            // Do something for "left arrow" key press.
+            break;
+          case "Right": // IE/Edge specific value
+          case "ArrowRight":
+            // Do something for "right arrow" key press.
+            break;
+          case "Enter":
+            // Do something for "enter" or "return" key press.
+            break;
+          case "Esc": // IE/Edge specific value
+          case "Escape":
+            // Do something for "esc" key press.
+            break;
+          default:
+            return; // Quit when this doesn't handle the key event.
+        }
+    
+        // Cancel the default action to avoid it being handled twice
+        event.preventDefault();
+      },
+      false,
+    );
+
+  }
+  list_item_select_down() {
+    //console.log("item_down");
+    //const list = document.querySelector("ul.mail_items");
+    //const listTop = list.getBoundingClientRect().top;
+    const highlightedItems = document.querySelectorAll("ul.mail_items li");
+    for (const userItem of highlightedItems) {
+	    if (userItem.classList.contains("selected")) {
+                let next_item = userItem.nextElementSibling;
+                if (next_item != null) {
+                 //console.log(next_item.getBoundingClientRect().top);
+                 //list.scrollTop = next_item.getBoundingClientRect().top ;
+                 this.highlightMailListItem(next_item);
+                 this.loadMailItem(next_item);
+		 next_item.scrollIntoView({
+                   behavior: "smooth"
+                 });
+		}
+		break;
+	    }
+    }
+  }
+
+  list_item_select_up() {
+    //console.log("item_up");
+    //let list = document.getElementById("list"); // GS
+    const highlightedItems = document.querySelectorAll("ul.mail_items li");
+    for (const userItem of highlightedItems) {
+	    if (userItem.classList.contains("selected")) {
+                //console.log(userItem);
+                let next_item = userItem.previousElementSibling;
+                if (next_item != null) {
+                 this.highlightMailListItem(next_item);
+                 this.loadMailItem(next_item);
+		 next_item.scrollIntoView({
+                   behavior: "smooth"
+                 });
+		}
+		break;
+	    }
+    }
+
   }
 
   dropdownClick() {
