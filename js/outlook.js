@@ -20,6 +20,7 @@ export class OutLook {
     //this.bindMailTableItemClick();
     //bindEscKey();
     this.bindKey();
+    this.table_mode = false;
   }
 
   mode_switch(op) {
@@ -103,6 +104,7 @@ export class OutLook {
 	    list.appendChild(this.items_table);
         this.createResizableTable(this.items_table);
        this.bindMailTableItemClick();
+	    this.table_mode = true;
 /*
         let mail_infos =  list.querySelectorAll(".mail_info");
 	for (const mail_info of mail_infos) {
@@ -154,6 +156,7 @@ export class OutLook {
 	        im.classList.remove("item_inline")
 	        im.classList.add("item")
         }
+	    this.table_mode = false;
 
 
     }
@@ -262,7 +265,7 @@ export class OutLook {
         if (event.defaultPrevented) {
           return; // Do nothing if the event was already processed
         }
-        //console.log(event.key);
+        console.log(event.key);
     
         switch (event.key) {
           case "Down": // IE/Edge specific value
@@ -301,7 +304,10 @@ export class OutLook {
     );
 
   }
+
   list_item_select_down() {
+    if (this.table_mode) { this.table_item_select_down(); return }
+
     //console.log("item_down");
     //const list = document.querySelector("ul.mail_items");
     //const listTop = list.getBoundingClientRect().top;
@@ -315,7 +321,8 @@ export class OutLook {
                  this.highlightMailListItem(next_item);
                  this.loadMailItem(next_item);
 		 next_item.scrollIntoView({
-                   behavior: "smooth"
+                   behavior: "smooth",
+		   block: "center",
                  });
 		}
 		break;
@@ -324,6 +331,7 @@ export class OutLook {
   }
 
   list_item_select_up() {
+    if (this.table_mode) { this.table_item_select_up(); return }
     //console.log("item_up");
     //let list = document.getElementById("list"); // GS
     const highlightedItems = document.querySelectorAll("ul.mail_items li");
@@ -335,7 +343,8 @@ export class OutLook {
                  this.highlightMailListItem(next_item);
                  this.loadMailItem(next_item);
 		 next_item.scrollIntoView({
-                   behavior: "smooth"
+                   behavior: "smooth",
+		   block: "center",
                  });
 		}
 		break;
@@ -344,6 +353,50 @@ export class OutLook {
 
   }
 
+  table_item_select_down() {
+    //console.log("item_down");
+    //const list = document.querySelector("ul.mail_items");
+    //const listTop = list.getBoundingClientRect().top;
+    const highlightedItems = document.querySelectorAll(".mail_items_table tr");
+    for (const userItem of highlightedItems) {
+	    if (userItem.classList.contains("selected")) {
+                let next_item = userItem.nextElementSibling;
+                if (next_item != null) {
+                 //console.log(next_item.getBoundingClientRect().top);
+                 //list.scrollTop = next_item.getBoundingClientRect().top ;
+                 this.highlightMailListItem(next_item);
+                 this.loadMailItem(next_item);
+		 next_item.scrollIntoView({
+                   behavior: "smooth",
+		   block: "center",
+                 });
+		}
+		break;
+	    }
+    }
+  }
+
+  table_item_select_up() {
+    //console.log("item_up");
+    //let list = document.getElementById("list"); // GS
+    const highlightedItems = document.querySelectorAll(".mail_items_table tr");
+    for (const userItem of highlightedItems) {
+	    if (userItem.classList.contains("selected")) {
+                //console.log(userItem);
+                let next_item = userItem.previousElementSibling;
+                if (next_item != null) {
+                 this.highlightMailListItem(next_item);
+                 this.loadMailItem(next_item);
+		 next_item.scrollIntoView({
+                   behavior: "smooth",
+		   block: "center",
+                 });
+		}
+		break;
+	    }
+    }
+
+  }
   dropdownClick() {
     $(".dropdown-menu li a").click(function () {
       var selText = $(this).text();
