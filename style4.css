@@ -269,7 +269,7 @@ ul.mail_items .mail_info {
   padding-left: 10px;
   white-space: nowrap;
   line-height: 19px;
-  text-overflow: ellipsis;
+  /*text-overflow: ellipsis; */
   white-space: nowrap;
   overflow: hidden;
   /* width: calc(100% - 120px); */
@@ -420,6 +420,13 @@ table.mail_items_table th {
 
 }
  
+/*
+table span {
+  text-overflow: ellipsis
+  white-space: nowrap;
+}
+*/
+
 table.mail_items_table td {
   border:1px solid #000066;
   /* background:#ffffff; */

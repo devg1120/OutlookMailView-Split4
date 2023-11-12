@@ -673,7 +673,6 @@ export class OutLook {
       div1.className = "sender_image";
       div1.style.backgroundColor = senderColors[mails[i].from];
       const span = document.createElement("span");
-      //span.setAttribute('src',  getSenderImageText(mails[i].name));
       span.innerHTML = this.getSenderImageText(mails[i].name);
       div1.appendChild(span);
       var th = document.createElement('td');
@@ -712,7 +711,19 @@ export class OutLook {
       th.appendChild(div22);
       tr.appendChild(th);
 
-	    
+/*
+      const div22 = document.createElement("div");
+      div22.className = "mail_subject";
+      //const span22 = document.createElement("span");
+      div22.innerHTML = mails[i].subject;
+      //span22.appendChild(txt);
+      //div22.appendChild(txt);
+      txt = document.createTextNode(mails[i].subject);
+      th = document.createElement('td');
+      //th.value = mails[i].subject;
+      th.appendChild(txt);
+      tr.appendChild(th);
+	*/    
       const div23 = document.createElement("div");
       div23.className = "mail_summary";
       const span23 = document.createElement("span");
