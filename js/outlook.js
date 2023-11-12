@@ -620,19 +620,37 @@ export class OutLook {
     var senderColors = {};
 
     var tr = document.createElement('tr');
+      //tr.style = "display: flex;";
       var th = ""
       th =  document.createElement('th');
       th.textContent = "NN";
-      tr.appendChild(th);
-      th =  document.createElement('th');
-      th.textContent = "Sender";
-      tr.appendChild(th);
-      th =  document.createElement('th');
-      th.textContent = "Header";
+      th.style.width = "40px";
+      //th.style.width = "5%";
       tr.appendChild(th);
       th =  document.createElement('th');
       th.textContent = "Date";
+      th.style.width = "180px";
+      //th.style.width = "20%";
       tr.appendChild(th);
+      th =  document.createElement('th');
+      th.textContent = "Sender";
+      th.style.width = "250px";
+      //th.style.width = "20%";
+      tr.appendChild(th);
+      th =  document.createElement('th');
+      th.textContent = "Subject";
+      th.style.width = "400px";
+      //th.style.width = "40%";
+      tr.appendChild(th);
+      th =  document.createElement('th');
+      th.textContent = "Summary";
+      //th.style.width = "999px";
+      //th.style.width = "20%";
+      //th.style.width = "999px";
+      //th.style.width = "calc(100% - 780px)";
+      //th.style = "flex-grow: 1;";
+      tr.appendChild(th);
+
     table.appendChild(tr);
 
     for (var i = 0; i < mails.length; i++) {
@@ -662,12 +680,22 @@ export class OutLook {
       th.appendChild(div1);
       tr.appendChild(th);
 
+      const div24 = document.createElement("div");
+      div24.className = "mail_sent_date";
+      const span24 = document.createElement("span");
+      let txt = document.createTextNode(mails[i].sentDate);
+      span24.appendChild(txt);
+      div24.appendChild(span24);
+      th = document.createElement('td');
+      th.appendChild(div24);
+      tr.appendChild(th);
+
       //const div2 = document.createElement("div");
       //div2.className = "mail_info";
       const div21 = document.createElement("div");
       div21.className = "mail_sender";
       const span21 = document.createElement("span");
-      let txt = document.createTextNode(mails[i].name);
+      txt = document.createTextNode(mails[i].name);
       span21.appendChild(txt);
       div21.appendChild(span21);
       th = document.createElement('td');
@@ -684,18 +712,19 @@ export class OutLook {
       th.appendChild(div22);
       tr.appendChild(th);
 
-	    /*
+	    
       const div23 = document.createElement("div");
       div23.className = "mail_summary";
       const span23 = document.createElement("span");
-      txt = document.createTextNode(mails[i].summary);
+      txt = document.createTextNode(mails[i].summary.substring(0,34));
       span23.appendChild(txt);
+      //span23.innerHTML = mails[i].summary;
       div23.appendChild(span23);
       th = document.createElement('td');
       th.appendChild(div23);
       tr.appendChild(th);
-*/
 
+/*
       const div24 = document.createElement("div");
       div24.className = "mail_sent_date";
       const span24 = document.createElement("span");
@@ -705,7 +734,7 @@ export class OutLook {
       th = document.createElement('td');
       th.appendChild(div24);
       tr.appendChild(th);
-
+*/
       table.appendChild(tr);
     }
 

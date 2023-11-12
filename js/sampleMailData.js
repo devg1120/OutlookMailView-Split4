@@ -9,6 +9,12 @@ function zero_pad( num) {
 
 }
 
+function getdate( period ) {
+   var newdate = new Date(date.getTime());
+   newdate.setDate(newdate.getDate() + period);
+   return newdate;
+}
+
 function date_format( date ) {
 
 var yyyy = date.getFullYear(); // 西暦を取得
@@ -59,7 +65,7 @@ var sampleMailData = [
       },
     ],
     //sentDate: "Pzt 16:47",
-    sentDate: "2023年 11月  7日 火曜日 17:26:15 JST",
+    sentDate: date_format(date),
     to: "ozcanzaferayan@gmail.com",
     name: "ByPeople & ShockFamily",
     from: "bp@bypeople.com",
@@ -72,7 +78,8 @@ var sampleMailData = [
     isImportant: false,
     isReplied: false,
     attachments: [],
-    sentDate: date.toLocaleString("ja"),
+    //sentDate: date.toLocaleString("ja"),
+    sentDate: date_format(getdate(-1)),
     to: "ozcanzaferayan@gmail.com",
     name: "Burgeon Brown",
     from: "burgeonjgdrjrgxhdum@hotmail.com",
@@ -85,7 +92,7 @@ var sampleMailData = [
     isImportant: false,
     isReplied: false,
     attachments: [],
-    sentDate: date_format(date),
+    sentDate: date_format(getdate(-3)),
     to: "ozcanzaferayan@gmail.com",
     name: "James Smith",
     from: "james@intelitmedia.com",
@@ -98,7 +105,7 @@ var sampleMailData = [
     isImportant: false,
     isReplied: false,
     attachments: [],
-    sentDate: "Pzt 16:47",
+    sentDate: date_format(getdate(-10)),
     to: "ozcanzaferayan@gmail.com",
     name: "Jonathan Williams",
     from: "JonathanWilliams@windx.net.br",
@@ -111,7 +118,7 @@ var sampleMailData = [
     isImportant: false,
     isReplied: false,
     attachments: [],
-    sentDate: "Pzt 16:47",
+    sentDate: date_format(getdate(-10)),
     to: "ozcanzaferayan@gmail.com",
     name: "Pensile Pateraupma",
     from: "pensilepateraupma@hotmail.com",
@@ -124,7 +131,7 @@ var sampleMailData = [
     isImportant: false,
     isReplied: false,
     attachments: [],
-    sentDate: "Pzt 16:47",
+    sentDate: date_format(getdate(-15)),
     to: "ozcanzaferayan@gmail.com",
     name: "Greg Roberts",
     from: "GregRoberts@avantel.ru",
@@ -137,7 +144,7 @@ var sampleMailData = [
     isImportant: false,
     isReplied: false,
     attachments: [],
-    sentDate: "Pzt 16:47",
+    sentDate: date_format(getdate(-15)),
     to: "ozcanzaferayan@gmail.com",
     name: "SERVICE.COLIS@DHL.FR",
     from: "SERVICE.COLIS@DHL.FR",
@@ -150,7 +157,7 @@ var sampleMailData = [
     isImportant: false,
     isReplied: false,
     attachments: [],
-    sentDate: "Pzt 16:47",
+    sentDate: date_format(getdate(-15)),
     to: "ozcanzaferayan@gmail.com",
     name: "ByPeople & ShockFamily",
     from: "bp@bypeople.com",
@@ -163,7 +170,7 @@ var sampleMailData = [
     isImportant: false,
     isReplied: false,
     attachments: [],
-    sentDate: "Pzt 16:47",
+    sentDate: date_format(getdate(-15)),
     to: "ozcanzaferayan@gmail.com",
     name: "Burgeon Brown",
     from: "burgeonjgdrjrgxhdum@hotmail.com",
@@ -176,7 +183,7 @@ var sampleMailData = [
     isImportant: false,
     isReplied: false,
     attachments: [],
-    sentDate: "Pzt 16:47",
+    sentDate: date_format(getdate(-15)),
     to: "ozcanzaferayan@gmail.com",
     name: "James Smith",
     from: "james@intelitmedia.com",
@@ -189,7 +196,7 @@ var sampleMailData = [
     isImportant: false,
     isReplied: false,
     attachments: [],
-    sentDate: "Pzt 16:47",
+    sentDate: date_format(getdate(-15)),
     to: "ozcanzaferayan@gmail.com",
     name: "Jonathan Williams",
     from: "JonathanWilliams@windx.net.br",
@@ -202,7 +209,7 @@ var sampleMailData = [
     isImportant: false,
     isReplied: false,
     attachments: [],
-    sentDate: "Pzt 16:47",
+    sentDate: date_format(getdate(-15)),
     to: "ozcanzaferayan@gmail.com",
     name: "Pensile Pateraupma",
     from: "pensilepateraupma@hotmail.com",
@@ -215,7 +222,7 @@ var sampleMailData = [
     isImportant: false,
     isReplied: false,
     attachments: [],
-    sentDate: "Pzt 16:47",
+    sentDate: date_format(getdate(-15)),
     to: "ozcanzaferayan@gmail.com",
     name: "Greg Roberts",
     from: "GregRoberts@avantel.ru",
