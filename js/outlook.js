@@ -21,6 +21,36 @@ export class OutLook {
     //bindEscKey();
     this.bindKey();
     this.table_mode = false;
+    this.item_horizontal_resize_sync = true;
+
+  }
+
+  resizeing(className, width) {
+      let mail_infos =  list.querySelectorAll("." + className);
+      for (const ele of mail_infos) {
+        ele.style.width = width + "px";
+      }
+  }
+
+  item_horizontal_resize(ele) {
+      if ( this.item_horizontal_resize_sync == false) { return}
+
+        const width = ele.getBoundingClientRect().width;
+        //const height = ele.getBoundingClientRect().height
+
+      //console.log("item_horizontal_resize",ele.className,width, height);
+
+      if ( ele.classList.contains("mail_sent_date"))  {
+              this.resizeing("mail_sent_date", width);
+
+      } else if ( ele.classList.contains("mail_sender"))  {
+              this.resizeing("mail_sender", width);
+
+      } else if ( ele.classList.contains("mail_subject"))  {
+              this.resizeing("mail_subject", width);
+
+      }
+
   }
 
   mode_switch(op) {
@@ -41,6 +71,17 @@ export class OutLook {
 	     for (const el of Array.from(mail_info.children)) {
                   //console.log(el);
 	        el.classList.add("mail_info_inline_block")
+
+		//     el.addEventListener('resize', this.item_horizontal_resize(el));   /* ADD */
+
+                const observer = new MutationObserver(() => {
+                  	 this.item_horizontal_resize(el);   /* ADD */
+                })
+                observer.observe(el, {
+                  attriblutes: true,
+                  attributeFilter: ["style"]
+                })
+
              }
         }
 
