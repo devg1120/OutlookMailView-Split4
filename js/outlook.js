@@ -628,6 +628,11 @@ export class OutLook {
       return $mailItems;
   }
 
+ convertHTML2A(str) {
+    return str.replace(/<[^>]+>/g, '');
+
+}
+
   loadData2(mails) {
     //var $mailItems_table = $(".mail_items_table");
     var colors = [
@@ -775,7 +780,8 @@ export class OutLook {
       const div23 = document.createElement("div");
       div23.className = "mail_summary";
       const span23 = document.createElement("span");
-      txt = document.createTextNode(mails[i].summary.substring(0,34));
+      //txt = document.createTextNode(mails[i].summary.substring(0,34));
+      txt = document.createTextNode(this.convertHTML2A(mails[i].summary.substring(0,34)));
       span23.appendChild(txt);
       //span23.innerHTML = mails[i].summary;
       div23.appendChild(span23);
