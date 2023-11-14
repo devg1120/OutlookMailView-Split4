@@ -129,6 +129,7 @@ export class OutLook {
         //let content = document.getElementById("content"); // GS
 	list.style.height = "100%";
 	content.style.height = "100%";
+        this.list_item_select_focus();
 
 
 
@@ -400,6 +401,27 @@ export class OutLook {
     }
 
   }
+
+  list_item_select_focus() {
+    if (this.table_mode) {  return }
+
+    const highlightedItems = document.querySelectorAll("ul.mail_items li");
+    for (const userItem of highlightedItems) {
+	    if (userItem.classList.contains("selected")) {
+                let next_item = userItem.nextElementSibling;
+                if (next_item != null) {
+                 //this.highlightMailListItem(next_item);
+                 //this.loadMailItem(next_item);
+		 next_item.scrollIntoView({
+                   behavior: "smooth",
+		   block: "center",
+                 });
+		}
+		break;
+	    }
+    }
+  }
+
 
   table_item_select_down() {
     //console.log("item_down");
