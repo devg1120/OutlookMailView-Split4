@@ -436,6 +436,7 @@ table span {
 table.mail_items_table td {
   border:1px solid #000066;
   /* background:#ffffff; */
+  display:table-cell;
 }
 
 table.mail_items_table tr:hover {

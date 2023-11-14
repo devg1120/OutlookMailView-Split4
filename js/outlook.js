@@ -125,6 +125,13 @@ export class OutLook {
 	        im.classList.add("item")
         }
 
+        //let list = document.getElementById("list"); // GS
+        //let content = document.getElementById("content"); // GS
+	list.style.height = "100%";
+	content.style.height = "100%";
+
+
+
     }
 
   }
@@ -686,7 +693,7 @@ export class OutLook {
       th =  document.createElement('th');
       th.textContent = "Summary";
       //th.style.width = "999px";
-      //th.style.width = "20%";
+      //th.style.width = "100%";
       //th.style.width = "999px";
       //th.style.width = "calc(100% - 780px)";
       //th.style = "flex-grow: 1;";
