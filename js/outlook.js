@@ -348,6 +348,7 @@ export class OutLook {
     
         // Cancel the default action to avoid it being handled twice
         event.preventDefault();
+	event.stopPropagation();
       },
       false,
     );
