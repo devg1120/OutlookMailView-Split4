@@ -235,6 +235,8 @@ export class OutLook {
     });
     
   }
+
+
   loadMailItem(listItem) {
     var mail = JSON.parse(listItem.getAttribute("json"));
     var senderImage = listItem.getAttribute("sender-image");
@@ -272,6 +274,8 @@ export class OutLook {
 
     if (mail.attachments.length > 0) {
       $("#mail_attachments").innerHTML = "<ul>" + strAttachmentsHtml + "</ul>";
+    } else {
+      $("#mail_attachments").innerHTML = "" ;
     }
   }
 
